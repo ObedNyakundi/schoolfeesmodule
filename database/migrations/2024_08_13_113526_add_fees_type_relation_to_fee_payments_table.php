@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('feestypes', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->timestamps();
+        Schema::table('fee_payments', function (Blueprint $table) {
+            $table->foreignId('feestypes_id')->references('id')->on('feestypes')->onDelete('cascade');
+
         });
+
 
     }
 
@@ -24,6 +24,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('feestypes');
+        Schema::table('fee_payments', function (Blueprint $table) {
+            $table->dropColumn('type_of_fees');
+        });
     }
 };
