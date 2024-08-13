@@ -15,6 +15,7 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Exports\StudentExporter;
+use Filament\Tables\Actions\Action;
 
 class StudentResource extends Resource
 {
@@ -114,6 +115,7 @@ class StudentResource extends Resource
                 ]),
                 ExportBulkAction::make('export')
                     ->exporter(StudentExporter::class),
+
             ]);
     }
 
