@@ -10,13 +10,24 @@ class FeePayment extends Model
     /*** ledger entries of payments ***/
     use HasFactory;
     protected $table = 'fee_payments';
+    protected $fillable = [
+        'student_id',
+        'payment_date',
+        'amount',
+        'feestypes_id',
+        'payment_modes_id',
+    ];
 
     
     public function student(){
         return $this->belongsTo(Student::class);
     }
 
-    public function feestype(){
+    public function feestypes(){
         return $this->belongsTo(Feestype::class);
+    }
+
+    public function paymentmode(){
+        return $this-> belongsTo(PaymentMode::class);
     }
 }

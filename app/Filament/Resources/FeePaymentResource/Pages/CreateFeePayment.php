@@ -9,4 +9,9 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateFeePayment extends CreateRecord
 {
     protected static string $resource = FeePaymentResource::class;
+
+    public function getTitle() : string
+    {
+        return 'Add a New Fee Payment';
+    }
 }
