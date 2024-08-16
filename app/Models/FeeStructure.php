@@ -14,11 +14,16 @@ class FeeStructure extends Model
         'stream_id',
         'term',
         'amount',
+        'added_by',
     ];
 
 
     public function stream(){
         return $this->belongsTo(Stream::class);
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class, 'added_by');
     }
 
 }

@@ -44,4 +44,8 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function feestructure(){
+        return $this->hasMany(FeeStructure::class);
+    }
 }

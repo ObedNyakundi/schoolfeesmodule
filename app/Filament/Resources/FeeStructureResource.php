@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use Illuminate\Support\Facades\Auth;
 use App\Filament\Resources\FeeStructureResource\Pages;
 use App\Filament\Resources\FeeStructureResource\RelationManagers;
 use App\Models\FeeStructure;
@@ -49,6 +50,10 @@ class FeeStructureResource extends Resource
                     ->columnSpan(2)
                     ->label('Amount:'),
 
+                Forms\Components\Hidden::make('added_by')
+                    ->default(Auth::user()->id)
+                    ->required()
+                    ->columnSpan(2),
 
             ]);
     }
@@ -58,16 +63,33 @@ class FeeStructureResource extends Resource
         return $table
             ->columns([
                 //
+                Tables\Columns\TextColumn::make('stream.name')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('term')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('amount')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('user.name')
+                    ->searchable()
+                    ->label('Added By')
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->sortable()
+                    ->label('Added At'),
+
             ])
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+               /* Tables\Actions\EditAction::make(),*/
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                    /* Tables\Actions\DeleteBulkAction::make(), */
                 ]),
             ]);
     }
@@ -84,7 +106,7 @@ class FeeStructureResource extends Resource
         return [
             'index' => Pages\ListFeeStructures::route('/'),
             'create' => Pages\CreateFeeStructure::route('/create'),
-            'edit' => Pages\EditFeeStructure::route('/{record}/edit'),
+           /* 'edit' => Pages\EditFeeStructure::route('/{record}/edit'),*/
         ];
     }
 }

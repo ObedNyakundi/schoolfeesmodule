@@ -21,6 +21,7 @@ class CreateStudent extends CreateRecord
         //transaction to create a student account
         $stdAccount=new StudentAccount();
         $stdAccount->student_id=$record->id;
+        $stdAccount->stream_id=$record->stream_id;
         $stdAccount->created_by=Auth::user()->id;
         $stdAccount->save();
 
