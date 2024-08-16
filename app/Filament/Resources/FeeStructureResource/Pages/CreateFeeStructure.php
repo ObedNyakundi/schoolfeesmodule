@@ -9,4 +9,9 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateFeeStructure extends CreateRecord
 {
     protected static string $resource = FeeStructureResource::class;
+
+    public function getTitle(): string
+    {
+     return 'Create New Fee Structure';   
+    }
 }

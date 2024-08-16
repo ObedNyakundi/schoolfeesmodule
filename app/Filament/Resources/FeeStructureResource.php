@@ -26,7 +26,30 @@ class FeeStructureResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\Select::make('stream_id') 
+                    ->required()
+                    ->relationship('stream', 'name')
+                    ->preload()
+                    ->searchable()
+                    ->columnSpan(2)
+                    ->label('Select Class:'),
+
+                Forms\Components\Select::make('term')
+                    ->required()
+                    ->options([
+                        'First Term' => 'First Term',
+                        'Second Term' => 'Second Term',
+                        'Third Term' => 'Third Term',
+                    ])
+                    ->columnSpan(2)
+                    ->label('Select Term:'),
+
+                Forms\Components\TextInput::make('amount')
+                    ->required()
+                    ->columnSpan(2)
+                    ->label('Amount:'),
+
+
             ]);
     }
 
