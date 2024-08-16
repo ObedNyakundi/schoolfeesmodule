@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('fee_structures', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('class_id')->references('id')->on('streams')->onDelete('cascade');
+            $table->foreignId('stream_id')->references('id')->on('streams')->onDelete('cascade');
             $table->string('term');
             $table->float('amount');
             $table->timestamps();

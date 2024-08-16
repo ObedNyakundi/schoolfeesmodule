@@ -28,6 +28,6 @@ class Student extends Model
     }
     
     public function studentaccount(){
-     return $this->hasMany(StudentAccount::class);   
+     return $this->hasOne(StudentAccount::class);   
     }
 }

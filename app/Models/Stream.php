@@ -17,4 +17,8 @@ class Stream extends Model
     public function student(){
         return $this->hasMany(Student::class);
     }
+
+    public function feestructure(){
+        return $this->hasMany(FeesStructure::class);
+    }
 }
