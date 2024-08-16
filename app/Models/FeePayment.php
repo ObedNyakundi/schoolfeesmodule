@@ -15,7 +15,7 @@ class FeePayment extends Model
         'payment_date',
         'amount',
         'feestypes_id',
-        'payment_modes_id',
+        'paymentmode_id',
     ];
 
     
@@ -27,7 +27,7 @@ class FeePayment extends Model
         return $this->belongsTo(Feestype::class);
     }
 
-    public function paymentmode(){
+    public function paymentmode( ){
         return $this-> belongsTo(PaymentMode::class);
     }
 }

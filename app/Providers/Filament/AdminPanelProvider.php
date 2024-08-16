@@ -31,7 +31,7 @@ class AdminPanelProvider extends PanelProvider
             ->registration()
             ->databaseNotifications( 10 )
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => Color::Blue,
                 'success' => Color::Green,
                 'warning' => Color::Rose,
                 'danger' => Color::Red,

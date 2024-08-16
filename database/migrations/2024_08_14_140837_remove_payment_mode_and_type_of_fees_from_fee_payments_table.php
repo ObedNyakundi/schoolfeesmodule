@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('fee_payments', function (Blueprint $table) {
-            $table ->dropColumn('payment_mode');
+       Schema::table('fee_payments', function (Blueprint $table) {
+           /* $table ->dropColumn('payment_mode');
             $table ->dropColumn('type_of_fees');
+            */
         });
     }
 
@@ -23,8 +24,9 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('fee_payments', function (Blueprint $table) {
-            $table->string('payment_mode');
+           /* $table->string('payment_mode');
             $table->string('type_of_fees');
+            */
         });
     }
 };

@@ -12,7 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('fee_payments', function (Blueprint $table) {
-             $table->foreignId('payment_modes_id')->references('id')->on('payment_modes')->onDelete('cascade');
+            $table->dropForeign(['payment_modes_id']);
+            $table->dropColumn('payment_modes_id');
+            $table->dropColumn('paymentmode_id');
+            $table->foreignId('paymentmode_id')->references('id')->on('payment_modes')->onDelete('cascade');
         });
     }
 
@@ -22,7 +25,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('fee_payments', function (Blueprint $table) {
-            Schema::dropColumns('payment_modes_id','fee_payments');
+           // $table -> dropColumns(['payment_modes_id','fee_payments']);
         });
     }
 };

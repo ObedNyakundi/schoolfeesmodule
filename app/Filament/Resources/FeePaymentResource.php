@@ -54,7 +54,7 @@ class FeePaymentResource extends Resource
                     ->label('Fee Type:')
                     ->required(),
 
-            Forms\Components\Select::make('payment_modes_id')
+            Forms\Components\Select::make('paymentmode_id')
                     ->relationship('paymentmode', 'name')
                     ->preload()
                     ->searchable()
