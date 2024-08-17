@@ -8,6 +8,7 @@ use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
 use App\Models\StudentAccount;
 use App\Models\Student;
+use App\Models\FeeStructure;
 
 class CreateStudent extends CreateRecord
 {
@@ -18,10 +19,19 @@ class CreateStudent extends CreateRecord
         //normal insert
        $record =  static::getModel()::create($data);
 
+       //check if there is an existing fee structure for the stream, and bill the student
+       $feeStructure=FeeStructure::where('stream_id',$record->stream_id)
+                                        ->latest()
+                                        ->value('amount') ?? 0;
+        //multiply by -1 because it is a fee debit
+        $feeStructure =$feeStructure * -1;
+
         //transaction to create a student account
         $stdAccount=new StudentAccount();
         $stdAccount->student_id=$record->id;
         $stdAccount->stream_id=$record->stream_id;
+        $stdAccount->balance=$feeStructure;
+        $stdAccount->debit=$feeStructure;
         $stdAccount->created_by=Auth::user()->id;
         $stdAccount->save();
 

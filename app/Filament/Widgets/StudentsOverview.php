@@ -40,10 +40,7 @@ class StudentsOverview extends BaseWidget
             -> description('Classes that Admitted This Month')
             -> descriptionIcon('heroicon-o-arrow-right')
             ->icon('heroicon-o-building-library')
-            ->color('primary')
-            ->chart([
-                '5','5','7','7','5','5','4'
-            ]),
+            ->color('primary'),
 
         ];
     }
