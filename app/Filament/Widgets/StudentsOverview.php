@@ -32,10 +32,7 @@ class StudentsOverview extends BaseWidget
             -> description('Admitted This Month')
             -> descriptionIcon('heroicon-o-arrow-right')
             ->icon('heroicon-o-clock')
-            ->color('success')
-            ->chart([
-                '4','6','5','7','4','6','6'
-            ]),
+            ->color('success'),
 
             Stat::make('Admissions per Class', Student::whereMonth('created_at', Carbon::now()->month)
                    ->distinct('stream_id')

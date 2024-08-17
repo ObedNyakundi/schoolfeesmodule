@@ -17,7 +17,7 @@ class FeePaymentOverview extends BaseWidget
     {
         return [
             //all payments
-            Stat::make('Total Fee Paid', FeePayment::sum('amount'))
+            Stat::make('Total Fee Collected', FeePayment::sum('amount'))
             -> description('All Fee Collected')
             -> descriptionIcon('heroicon-o-arrow-right')
             ->icon('heroicon-o-banknotes')
@@ -33,10 +33,7 @@ class FeePaymentOverview extends BaseWidget
             -> description('Fee Collected this month')
             -> descriptionIcon('heroicon-o-arrow-right')
             ->icon('heroicon-o-banknotes')
-            ->color('success')
-            ->chart([
-                '4','5','3','7','9','6','8'
-            ]),
+            ->color('success'),
 
             //Fee Balances
             Stat::make('School Account Balance', 
