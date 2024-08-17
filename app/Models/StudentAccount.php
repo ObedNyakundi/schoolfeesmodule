@@ -17,9 +17,18 @@ class StudentAccount extends Model
         'balance',
         'description',
         'created_by',
+        'stream_id',
     ];
 
     public function student(){
         return $this->belongsTo(Student::class, 'student_id', 'id');
+    }
+    
+    public function feepayment(){
+     return $this->hasMany(FeePayment::class);   
+    }
+
+    public function stream(){
+        return $this->belongsTo(Stream::class, 'stream_id', 'id');
     }
 }

@@ -86,17 +86,22 @@ class StudentResource extends Resource
                 //
                 Tables\Columns\TextColumn::make('admission_number')
                     ->searchable()
-                    ->sortable(),
+                    ->sortable()
+                    ->label('Admission No.'),
                 Tables\Columns\TextColumn::make('name')
                     ->sortable()
-                    ->searchable(),
+                    ->searchable()
+                    ->label('Student Name'),
                 Tables\Columns\TextColumn::make('stream.name')
                     ->searchable()
-                    ->sortable(),
+                    ->sortable()
+                    ->label('Class'),
                 Tables\Columns\TextColumn::make('guardian_name')
+                    ->label('Guardian Name')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('guardian_phone')
-                    ->searchable(),
+                    ->searchable()
+                    ->label('Guardian Phone No.'),
                 Tables\Columns\TextColumn::make('studentaccount.balance')
                     ->label('Fee Balance')
                     ->sortable()

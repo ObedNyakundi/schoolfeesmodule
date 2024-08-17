@@ -24,6 +24,10 @@ class FeePayment extends Model
         return $this->belongsTo(Student::class);
     }
 
+    public function studentaccount(){
+     return $this->belongsTo(StudentAccount::class);   
+    }
+
     public function feestypes(){
         return $this->belongsTo(Feestype::class);
     }

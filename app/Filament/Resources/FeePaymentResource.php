@@ -82,12 +82,29 @@ class FeePaymentResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('student.name') ->sortable(),
-                Tables\Columns\TextColumn::make('student.stream.name') ->sortable(),
-                Tables\Columns\TextColumn::make('feestypes.name') ->sortable(),
+                Tables\Columns\TextColumn::make('student.name') 
+                    ->sortable(),
+
+                Tables\Columns\TextColumn::make('student.stream.name') 
+                    ->sortable(),
+                
+                Tables\Columns\TextColumn::make('feestypes.name') 
+                    ->sortable(),
+                
                 Tables\Columns\TextColumn::make('amount'),
-                Tables\Columns\TextColumn::make('created_at') ->dateTime() ->label('Payment Date') ->sortable(),
-                Tables\Columns\TextColumn::make('paymentmode.name'),
+
+                Tables\Columns\TextColumn::make('paymentmode.name') 
+                    ->sortable() 
+                    ->label('Payment Mode'),
+
+                Tables\Columns\TextColumn::make('users.name') 
+                    ->sortable() 
+                    ->label('Approved By'),
+
+                Tables\Columns\TextColumn::make('created_at') 
+                    ->dateTime() 
+                    ->label('Payment Date') 
+                    ->sortable(),
                 
 
             ])

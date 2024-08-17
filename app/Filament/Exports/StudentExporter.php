@@ -14,11 +14,13 @@ class StudentExporter extends Exporter
     public static function getColumns(): array
     {
         return [
-            ExportColumn::make('admission_number'),
-            ExportColumn::make('name'),
-            ExportColumn::make('stream.name'),
-            ExportColumn::make('guardian_name'),
-            ExportColumn::make('guardian_phone'),
+            ExportColumn::make('admission_number') ->label('Admission Number'),
+            ExportColumn::make('name') ->label('Student Name'),
+            ExportColumn::make('stream.name') ->label('Class'),
+            ExportColumn::make('guardian_name') ->label('Guardian Name'),
+            ExportColumn::make('guardian_phone') ->label('Guardian Phone'),
+            ExportColumn::make('studentaccount.balance') ->label('Fee Balance'),
+            ExportColumn::make('created_at') ->label('Date of Admission'),
         ];
     }
 
