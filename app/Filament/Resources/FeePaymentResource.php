@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use Illuminate\Support\Facades\Auth;
 use App\Filament\Resources\FeePaymentResource\Pages;
 use App\Filament\Resources\FeePaymentResource\RelationManagers;
 use App\Models\FeePayment;
@@ -67,6 +68,11 @@ class FeePaymentResource extends Resource
                         ])
                     ->label('Payment Mode:')
                     ->required(),
+
+            Forms\Components\Hidden::make('added_by')
+                    ->default(Auth::user()->id)
+                    ->required()
+                    ->columnSpan(2),
 
 
             ]);

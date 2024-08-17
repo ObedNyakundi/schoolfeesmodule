@@ -48,4 +48,8 @@ class User extends Authenticatable
     public function feestructure(){
         return $this->hasMany(FeeStructure::class);
     }
+
+    public function feepayment(){
+        return $this->hasMany(FeePayment::class);
+    }
 }

@@ -97,6 +97,10 @@ class StudentResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('guardian_phone')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('studentaccount.balance')
+                    ->label('Fee Balance')
+                    ->sortable()
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                 ->label('Admitted on'),
             ])

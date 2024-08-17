@@ -16,6 +16,7 @@ class FeePayment extends Model
         'amount',
         'feestypes_id',
         'paymentmode_id',
+        'added_by',
     ];
 
     
@@ -29,5 +30,9 @@ class FeePayment extends Model
 
     public function paymentmode( ){
         return $this-> belongsTo(PaymentMode::class);
+    }
+
+    public function users(){
+        return $this->belongsTo(User::class, 'added_by', 'id');
     }
 }
