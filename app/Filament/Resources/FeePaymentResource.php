@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use App\Filament\Resources\FeePaymentResource\Pages;
 use App\Filament\Resources\FeePaymentResource\RelationManagers;
@@ -13,6 +14,11 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+
+use Filament\Tables\Filters\Filter;
+use Filament\Tables\Filters\SelectFilter;
+use Filament\Forms\Components\DatePicker;
+use Filament\Tables\Filters\Indicator;
 
 class FeePaymentResource extends Resource
 {
@@ -94,12 +100,17 @@ class FeePaymentResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('student.name') 
-                    ->sortable(),
+                    ->sortable()
+                    ->searchable()
+                    ->label('Student Name'),
 
                 Tables\Columns\TextColumn::make('student.stream.name') 
-                    ->sortable(),
+                    ->sortable()
+                    ->label('Class')
+                    ->searchable(),
                 
-                Tables\Columns\TextColumn::make('feestypes.name') 
+                Tables\Columns\TextColumn::make('feestypes.name')
+                    ->label('Fees Type') 
                     ->sortable(),
                 
                 Tables\Columns\TextColumn::make('amount'),
@@ -110,6 +121,7 @@ class FeePaymentResource extends Resource
 
                 Tables\Columns\TextColumn::make('users.name') 
                     ->sortable() 
+                    ->searchable()
                     ->label('Approved By'),
 
                 Tables\Columns\TextColumn::make('created_at') 
@@ -120,7 +132,46 @@ class FeePaymentResource extends Resource
 
             ])
             ->filters([
-                //
+                SelectFilter::make('stream')
+                ->relationship('student', 'stream.name')
+                ->preload()
+                ->searchable()
+                ->label('Class'),
+
+                SelectFilter::make('feestypes')
+                ->relationship('feestypes', 'name')
+                ->preload()
+                ->searchable()
+                ->label('Type of Fees'),
+
+                SelectFilter::make('paymentmode')
+                ->relationship('paymentmode', 'name')
+                ->preload()
+                ->searchable()
+                ->label('Payment Mode'),
+
+                Filter::make('created_at')
+                    ->form([
+                        DatePicker::make('from'),
+                        DatePicker::make('until'),
+                    ])
+                    ->label('Payment Date')
+
+                    ->indicateUsing(function (array $data): array {
+                        $indicators = [];
+                 
+                        if ($data['from'] ?? null) {
+                            $indicators[] = Indicator::make('Created from ' . Carbon::parse($data['from'])->toFormattedDateString())
+                                ->removeField('from');
+                        }
+                 
+                        if ($data['until'] ?? null) {
+                            $indicators[] = Indicator::make('Created until ' . Carbon::parse($data['until'])->toFormattedDateString())
+                                ->removeField('until');
+                        }
+                 
+                        return $indicators;
+                    }),
             ])
             ->actions([
                 /*Tables\Actions\EditAction::make(),*/
