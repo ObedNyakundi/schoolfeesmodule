@@ -18,6 +18,9 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Exports\StudentExporter;
 use Filament\Tables\Actions\Action;
 
+use Filament\Tables\Filters\Filter;
+use Filament\Tables\Filters\SelectFilter;
+
 class StudentResource extends Resource
 {
     protected static ?string $model = Student::class;
@@ -120,9 +123,24 @@ class StudentResource extends Resource
                 Tables\Columns\TextColumn::make('created_at')
                 ->label('Admitted on'),
             ])
+            
             ->filters([
-                //
+
+                Filter::make('With Fee Balance') 
+                    ->query(fn (Builder $query): Builder => $query->whereHas('studentAccount', fn (Builder $query) => $query->where('balance', '<', 0))),
+
+                SelectFilter::make('stream')
+                ->relationship('stream', 'name')
+                ->preload()
+                ->searchable()
+                ->label('Class'),
+
+                SelectFilter::make('added_by')
+                ->relationship('user', 'name')
+                ->preload()
+                ->label('Admitted By'),
             ])
+
             ->actions([
                 Tables\Actions\EditAction::make(),
             ])
