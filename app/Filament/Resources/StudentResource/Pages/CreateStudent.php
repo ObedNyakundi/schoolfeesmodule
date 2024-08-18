@@ -37,6 +37,11 @@ class CreateStudent extends CreateRecord
 
         return $record;
     }
+
+    protected function getCreatedNotificationTitle(): ?string
+    {
+        return 'Student Admitted Successfuly';
+    }
     
     //the custom title for admitting a student
     public function getTitle(): string

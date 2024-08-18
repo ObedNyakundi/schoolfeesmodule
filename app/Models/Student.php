@@ -16,11 +16,16 @@ class Student extends Model
         'guardian_phone',
         'guardian_name',
         'stream_id',
+        'added_by',
     ];
 
     public function stream() 
     {
         return $this->belongsTo(Stream::class);
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class, 'added_by');
     }
 
     public function feepayment(){

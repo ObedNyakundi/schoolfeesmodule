@@ -39,7 +39,18 @@ class FeePaymentResource extends Resource
                     ->required()
                     ->label('Amount:') 
                     ->maxLength(10)
+                    ->numeric()
+                    ->minValue(10)
                     ->placeholder('e.g. 30000'),
+
+                Forms\Components\Select::make('is_correction')
+                    ->required()
+                    ->options([
+                        '0' => 'No',
+                        '1' => 'Yes',
+                    ])
+                    ->default('0')
+                    ->label('Is it a correction?:'),
                 
                 Forms\Components\Select::make('feestypes_id')
                     ->relationship('feestypes', 'name')

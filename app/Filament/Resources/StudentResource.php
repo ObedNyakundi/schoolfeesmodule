@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use Illuminate\Support\Facades\Auth;
 use App\Filament\Resources\StudentResource\Pages;
 use App\Filament\Resources\StudentResource\RelationManagers;
 use App\Models\Student;
@@ -59,6 +60,12 @@ class StudentResource extends Resource
                     ->maxLength(15)
                     //->uppercase()
                     ->placeholder('e.g. XY1234'),
+
+                Forms\Components\Hidden::make('added_by')
+                    ->default(Auth::user()->id)
+                    ->required()
+                    ->columnSpan(2),
+
                 ]),
 
                Forms\Components\Section::make('Guardian Details')
@@ -104,6 +111,10 @@ class StudentResource extends Resource
                     ->label('Guardian Phone No.'),
                 Tables\Columns\TextColumn::make('studentaccount.balance')
                     ->label('Fee Balance')
+                    ->sortable()
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('user.name')
+                    ->label('Admitted By')
                     ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')

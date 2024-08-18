@@ -20,6 +20,7 @@ class StudentExporter extends Exporter
             ExportColumn::make('guardian_name') ->label('Guardian Name'),
             ExportColumn::make('guardian_phone') ->label('Guardian Phone'),
             ExportColumn::make('studentaccount.balance') ->label('Fee Balance'),
+            ExportColumn::make('user.name') ->label('Admitted By'),
             ExportColumn::make('created_at') ->label('Date of Admission'),
         ];
     }

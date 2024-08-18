@@ -12,6 +12,19 @@ class CreateFeePayment extends CreateRecord
 {
     protected static string $resource = FeePaymentResource::class;
 
+    //modify form data before create
+    protected function mutateFormDataBeforeCreate(array $data): array
+    {
+        //if it is a correction, multiply by negative 1 before insert
+        if($data['is_correction']){
+            $data['amount']=$data['amount']*-1;
+        }
+
+        return $data;
+        
+    }
+
+    // chain a transaction to create an equivalent student account
     protected function handleRecordCreation(array $data): FeePayment
     {
          //normal insert
@@ -29,8 +42,15 @@ class CreateFeePayment extends CreateRecord
        return $record;
     }
 
+    protected function getCreatedNotificationTitle(): ?string
+    {
+        return 'Fee Added Successfuly';
+    }
+
     public function getTitle() : string
     {
         return 'Add a New Fee Payment';
     }
+
+
 }
