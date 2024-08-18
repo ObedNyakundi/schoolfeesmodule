@@ -12,8 +12,11 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Tables\Actions\ExportAction;
+use Filament\Tables\Actions\ExportBulkAction;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Exports\FeePaymentExporter;
 
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\SelectFilter;
@@ -176,10 +179,19 @@ class FeePaymentResource extends Resource
             ->actions([
                 /*Tables\Actions\EditAction::make(),*/
             ])
+
+            ->headerActions([
+                ExportAction::make('Export')
+                    ->exporter(FeePaymentExporter::class),
+            ])
+
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
+
+                ExportBulkAction::make('export')
+                    ->exporter(FeePaymentExporter::class),
             ]);
     }
 
