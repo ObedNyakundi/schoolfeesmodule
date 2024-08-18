@@ -31,7 +31,7 @@ class FeesPaymentChart extends ChartWidget
             'datasets' => [
                 [
                     'label' => 'Total Payments',
-                    'data' => $data,
+                    'data' => $data ,
                     'backgroundColor'=> 
                     [
                           'rgb(255, 99, 132)',

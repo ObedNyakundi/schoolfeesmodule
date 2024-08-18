@@ -129,6 +129,9 @@ class StudentResource extends Resource
                 Filter::make('With Fee Balance') 
                     ->query(fn (Builder $query): Builder => $query->whereHas('studentAccount', fn (Builder $query) => $query->where('balance', '<', 0))),
 
+                Filter::make('Without Fee Balance') 
+                    ->query(fn (Builder $query): Builder => $query->whereHas('studentAccount', fn (Builder $query) => $query->where('balance', '>', -1))),
+
                 SelectFilter::make('stream')
                 ->relationship('stream', 'name')
                 ->preload()
@@ -138,6 +141,7 @@ class StudentResource extends Resource
                 SelectFilter::make('added_by')
                 ->relationship('user', 'name')
                 ->preload()
+                ->searchable()
                 ->label('Admitted By'),
             ])
 
