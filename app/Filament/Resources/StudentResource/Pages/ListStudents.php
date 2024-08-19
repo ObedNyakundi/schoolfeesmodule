@@ -29,11 +29,13 @@ class ListStudents extends ListRecords
 
             'With Fee Balance' => Tab::make()
             ->modifyQueryUsing(fn (Builder $query): Builder => $query->whereHas('studentAccount', fn (Builder $query) => $query->where('balance', '<', 0)))
-            ->badge(Student::query()->whereHas('studentAccount', fn (Builder $query) => $query->where('balance', '<', 0))->count()),
+            ->badge(Student::query()->whereHas('studentAccount', fn (Builder $query) => $query->where('balance', '<', 0))->count())
+            ->badgeColor('warning'),
 
             'Without Fee Balance' => Tab::make()
             ->modifyQueryUsing(fn (Builder $query): Builder => $query->whereHas('studentAccount', fn (Builder $query) => $query->where('balance', '>', -1)))
-            ->badge(Student::query()->whereHas('studentAccount', fn (Builder $query) => $query->where('balance', '>', -1))->count()),
+            ->badge(Student::query()->whereHas('studentAccount', fn (Builder $query) => $query->where('balance', '>', -1))->count())
+            ->badgeColor('success'),
 
             ];
         
