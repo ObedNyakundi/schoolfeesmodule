@@ -9,4 +9,9 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateStream extends CreateRecord
 {
     protected static string $resource = StreamResource::class;
+
+    public function getTitle(): string
+    {
+     return 'Create New Class';   
+    }
 }

@@ -17,6 +17,8 @@ class StreamResource extends Resource
 {
     protected static ?string $model = Stream::class;
     protected static ?string $navigationGroup = 'Students Management';
+    protected static ?string $label = 'Classes';
+   // protected static ?string $recordTitleAttribute = 'Classes';
     protected static ?int $navigationSort = 2;
     protected static ?string $navigationIcon = 'heroicon-o-building-library';
 

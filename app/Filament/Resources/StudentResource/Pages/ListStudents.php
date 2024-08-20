@@ -37,6 +37,11 @@ class ListStudents extends ListRecords
             ->badge(Student::query()->whereHas('studentAccount', fn (Builder $query) => $query->where('balance', '>', -1))->count())
             ->badgeColor('success'),
 
+            'Fee Overpaid' => Tab::make()
+            ->modifyQueryUsing(fn (Builder $query): Builder => $query->whereHas('studentAccount', fn (Builder $query) => $query->where('balance', '>', 0)))
+            ->badge(Student::query()->whereHas('studentAccount', fn (Builder $query) => $query->where('balance', '>', 0))->count())
+            ->badgeColor('primary'),
+
             ];
         
     }
