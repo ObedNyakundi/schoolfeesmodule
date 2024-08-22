@@ -45,6 +45,8 @@ class User extends Authenticatable
         ];
     }
     
+
+    /* Definition of User relationships*/
     public function student(){
         return $this->hasMany(Student::class);
     }
@@ -55,5 +57,9 @@ class User extends Authenticatable
 
     public function feepayment(){
         return $this->hasMany(FeePayment::class);
+    }
+
+    public function schoolexpense(){
+        return $this->hasMany(SchoolExpense::class);
     }
 }
