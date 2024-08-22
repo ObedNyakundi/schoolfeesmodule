@@ -17,6 +17,7 @@ class Student extends Model
         'guardian_name',
         'stream_id',
         'added_by',
+        'gender'
     ];
 
     public function stream() 

@@ -65,6 +65,7 @@ class FeeStructureResource extends Resource
                 //
                 Tables\Columns\TextColumn::make('stream.name')
                     ->searchable()
+                    ->label('Class')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('term')
                     ->searchable()

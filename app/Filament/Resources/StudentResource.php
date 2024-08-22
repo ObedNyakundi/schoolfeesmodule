@@ -43,6 +43,16 @@ class StudentResource extends Resource
                     ->maxLength(255)
                     ->placeholder('e.g. Obed Paul') 
                     ->columnSpan(2),
+
+                Forms\Components\Select::make('gender')
+                ->required()
+                ->options([
+                    'Male' => 'Male',
+                    'Female' => 'Female',
+                ])
+                ->label('Select Gender')
+                ->columnSpan(2),
+
                 Forms\Components\Select::make('stream_id') 
                     ->required()
                     ->relationship('stream', 'name')
@@ -55,14 +65,16 @@ class StudentResource extends Resource
                         ->required()
                         ->maxLength(255),
                         ])
-                    ->columnSpan(2)
-                    ->label('Select Class'),
+                    ->label('Select Class')
+                    ->columnSpan('1/2'),
+
                 Forms\Components\TextInput::make('admission_number') 
                     ->required()
                     ->unique()
                     ->maxLength(15)
                     //->uppercase()
-                    ->placeholder('e.g. XY1234'),
+                    ->placeholder('e.g. XY1234')
+                    ->columnSpan('1/2'),
 
                 Forms\Components\Hidden::make('added_by')
                     ->default(Auth::user()->id)
