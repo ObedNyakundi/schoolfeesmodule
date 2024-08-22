@@ -36,7 +36,7 @@ class FeePaymentOverview extends BaseWidget
             ->color('success'),
 
             //Fee Balances
-            Stat::make('School Account Balance', 
+            Stat::make('School Fees Account Balance', 
                 StudentAccount::sum('balance'))
             -> description('Account Balance')
             -> descriptionIcon('heroicon-o-arrow-right')

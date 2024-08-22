@@ -6,8 +6,9 @@ use Filament\Widgets\ChartWidget;
 
 class SchoolExpenses extends ChartWidget
 {
-    protected static ?string $heading = 'School Expenses for the Year ';
+    protected static ?string $heading =" School Expenses";
     protected static ?int $sort = 3;
+
 
     protected function getData(): array
     {
@@ -19,5 +20,11 @@ class SchoolExpenses extends ChartWidget
     protected function getType(): string
     {
         return 'bar';
+    }
+
+     //chart description
+    public function getDescription(): ?string
+    {
+        return 'The School Expenses for the year ' . now()->year;
     }
 }
