@@ -11,7 +11,7 @@ class FeesPaymentChart extends ChartWidget
 {
     protected static ?string $heading = 'Fee Collection For The Year';
     protected static ?int $sort = 4;
-    protected static ?string $pollingInterval = '10s';
+    protected static ?string $pollingInterval = '5s';
     //protected string | int | array $columnSpan = 'full';
 
     protected function getData(): array
