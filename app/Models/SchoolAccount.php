@@ -12,7 +12,7 @@ class SchoolAccount extends Model
     protected $fillable = [
         'name',
         'income',
-        'expense',
+        'expenses',
         'balance',
     ];
 }

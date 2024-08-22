@@ -7,6 +7,8 @@ use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
 use App\Models\StudentAccount;
 use App\Models\FeePayment;
+use App\Models\SchoolAccount;
+
 
 class CreateFeePayment extends CreateRecord
 {
@@ -38,6 +40,12 @@ class CreateFeePayment extends CreateRecord
        $studentAccount->balance=$studentAccount->balance+$credit; //update balance
        $studentAccount->credit=$studentAccount->credit+$credit; //update credit
        $studentAccount->save();
+
+       //Fetch school account for Income update
+       $schoolAccount=SchoolAccount::latest()->first();
+       $schoolAccount->balance=$schoolAccount->balance+$credit; //update balance
+       $schoolAccount->income=$schoolAccount->income+$credit; //update income
+       $schoolAccount->save();
 
        return $record;
     }
