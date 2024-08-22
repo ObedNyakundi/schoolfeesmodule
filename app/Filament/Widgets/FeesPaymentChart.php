@@ -26,24 +26,20 @@ class FeesPaymentChart extends ChartWidget
             })->toArray();
 
 
+
         return [
             
             'datasets' => [
-                [
-                    'label' => 'Total Payments',
-                    'data' => $data ,
-                   /* 'backgroundColor'=> 
-                    [
-                          'rgb(255, 99, 132)',
-                          'rgb(75, 192, 192)',
-                          'rgb(255, 205, 86)',
-                          'rgb(201, 203, 207)',
-                          'rgb(54, 162, 235)'
-                    ]*/
+                [   'label' => 'Fee Payments',
+                    'data' => array_values($data),
                 ]
             ],
             
-            'labels' => array_keys($data),
+            'labels' => array_map(function ($monthFigure) {
+                return Carbon::createFromFormat('m', $monthFigure)->format('F');
+        }, array_keys($data)),
+
+
 
         ];
     }

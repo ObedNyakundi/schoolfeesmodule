@@ -114,6 +114,10 @@ class StudentResource extends Resource
                     ->sortable()
                     ->searchable()
                     ->label('Student Name'),
+
+                Tables\Columns\TextColumn::make('gender')
+                    ->sortable()
+                    ->label('Gender'),
                 Tables\Columns\TextColumn::make('stream.name')
                     ->searchable()
                     ->sortable()

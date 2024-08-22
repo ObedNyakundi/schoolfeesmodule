@@ -42,6 +42,12 @@ class CreateStudent extends CreateRecord
     {
         return 'Student Admitted Successfuly';
     }
+
+    //handles the redirection
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
     
     //the custom title for admitting a student
     public function getTitle(): string

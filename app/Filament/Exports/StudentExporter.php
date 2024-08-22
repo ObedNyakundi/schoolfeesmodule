@@ -16,6 +16,7 @@ class StudentExporter extends Exporter
         return [
             ExportColumn::make('admission_number') ->label('Admission Number'),
             ExportColumn::make('name') ->label('Student Name'),
+            ExportColumn::make('gender') ->label('Gender'),
             ExportColumn::make('stream.name') ->label('Class'),
             ExportColumn::make('guardian_name') ->label('Guardian Name'),
             ExportColumn::make('guardian_phone') ->label('Guardian Phone'),
