@@ -9,4 +9,9 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateSchoolExpense extends CreateRecord
 {
     protected static string $resource = SchoolExpenseResource::class;
+
+    public function getTitle(): string
+    {
+        return 'Add New School Expense';
+    }
 }
