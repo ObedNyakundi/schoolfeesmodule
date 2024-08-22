@@ -29,7 +29,7 @@ class SchoolExpenses extends ChartWidget
         return [
 
              'datasets' => [
-                [   'label' => 'Fee Payments',
+                [   'label' => 'School Expenses',
                     'data' => array_values($data),
                 ]
             ],
