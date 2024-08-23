@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('school_accounts', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name') ->unique();
             $table->float('income') ->default(0);
             $table->float('expenses') ->default(0);
             $table->float('balance') ->default(0);

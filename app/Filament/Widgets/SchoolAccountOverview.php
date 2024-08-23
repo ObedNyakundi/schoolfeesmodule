@@ -25,8 +25,8 @@ class SchoolAccountOverview extends BaseWidget
             ]),
 
             //all Expenses Amount
-            Stat::make('School Expenses', SchoolAccount::latest() -> first() -> expenses)
-            -> description('Current Balance')
+            Stat::make('Total School Expenses', SchoolAccount::latest() -> first() -> expenses)
+            -> description('School Expenses')
             -> descriptionIcon('heroicon-o-arrow-right')
             ->icon('heroicon-o-banknotes')
             ->color('warning')
@@ -35,8 +35,8 @@ class SchoolAccountOverview extends BaseWidget
             ]),
 
             //all income Amount
-            Stat::make('School Expenses', SchoolAccount::latest() -> first() -> income)
-            -> description('Current Balance')
+            Stat::make('Total School Income', SchoolAccount::latest() -> first() -> income)
+            -> description('School Income')
             -> descriptionIcon('heroicon-o-arrow-right')
             ->icon('heroicon-o-banknotes')
             ->color('primary')
