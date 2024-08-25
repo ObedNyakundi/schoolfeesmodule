@@ -12,12 +12,12 @@ class Student extends Model
 
     protected $fillable=[
         'name',
+        'gender',
         'admission_number',
         'guardian_phone',
         'guardian_name',
         'stream_id',
         'added_by',
-        'gender'
     ];
 
     public function stream() 

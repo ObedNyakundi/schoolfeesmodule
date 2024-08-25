@@ -10,12 +10,14 @@ use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Actions\ImportAction;
 use Filament\Tables\Actions\ExportAction;
 use Filament\Tables\Actions\ExportBulkAction;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Exports\StudentExporter;
+use App\Filament\Imports\StudentImporter;
 use Filament\Tables\Actions\Action;
 
 use Filament\Tables\Filters\Filter;
@@ -166,6 +168,9 @@ class StudentResource extends Resource
                 Tables\Actions\DeleteAction::make(),
             ])
             ->headerActions([
+                ImportAction::make('import')
+                    ->importer(StudentImporter::class),
+                    
                 ExportAction::make('export')
                     ->exporter(StudentExporter::class),
             ])
