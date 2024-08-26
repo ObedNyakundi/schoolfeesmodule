@@ -12,9 +12,6 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('fee_payments', function (Blueprint $table) {
-            $table->dropForeign(['payment_modes_id']);
-            $table->dropColumn('payment_modes_id');
-            $table->dropColumn('paymentmode_id');
             $table->foreignId('paymentmode_id')->references('id')->on('payment_modes')->onDelete('cascade');
         });
     }

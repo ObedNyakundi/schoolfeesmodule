@@ -4,6 +4,8 @@ namespace App\Filament\Imports;
 
 use Illuminate\Support\Facades\Auth;
 use App\Models\Student;
+use App\Models\StudentAccount;
+use App\Models\FeeStructure;
 use Filament\Actions\Imports\ImportColumn;
 use Filament\Actions\Imports\Importer;
 use Filament\Actions\Imports\Models\Import;
@@ -32,13 +34,6 @@ class StudentImporter extends Importer
             ImportColumn::make('added_by')
                 ->requiredMapping()
                 ->numeric()
-                ->castStateUsing(function (integer $user): ?integer {
-                    if (blank($user)) {
-                        return Auth::user()->id;
-                    }
-                
-                    return $user;
-                })
                 ->rules(['required', 'integer']),
             ImportColumn::make('gender')
                 ->requiredMapping()
@@ -46,8 +41,33 @@ class StudentImporter extends Importer
         ];
     }
 
+    protected function beforeSave(): void
+    {
+        //
+         //check if there is an existing fee structure for the stream, and bill the student
+       $feeStructure=FeeStructure::where('stream_id',$this->record->stream_id)
+                                        ->latest()
+                                        ->value('amount') ?? 0;
+        //multiply by -1 because it is a fee debit
+        $feeStructure =$feeStructure * -1;
+
+        //transaction to create a student account
+        $stdAccount=new StudentAccount();
+        $stdAccount->student_id=$this->record->id;
+        $stdAccount->stream_id=$this->record->stream_id;
+        $stdAccount->balance=$feeStructure;
+        $stdAccount->debit=$feeStructure;
+        $stdAccount->created_by=Auth::user()->id;
+        $stdAccount->save();
+
+        $record ->studentaccount()->save($stdAccount);
+        //return $record;
+    }
+
     public function resolveRecord(): ?Student
     {
+       // $record =  static::getModel()::create($data);
+
         // return Student::firstOrNew([
         //     // Update existing records, matching them by `$this->data['column_name']`
         //     'email' => $this->data['email'],
