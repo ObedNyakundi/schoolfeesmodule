@@ -106,7 +106,7 @@ class FeeStructureResource extends Resource
     {
         return [
             'index' => Pages\ListFeeStructures::route('/'),
-            'create' => Pages\CreateFeeStructure::route('/create'),
+            //'create' => Pages\CreateFeeStructure::route('/create'),
            /* 'edit' => Pages\EditFeeStructure::route('/{record}/edit'),*/
         ];
     }

@@ -206,7 +206,7 @@ class FeePaymentResource extends Resource
     {
         return [
             'index' => Pages\ListFeePayments::route('/'),
-            'create' => Pages\CreateFeePayment::route('/create'),
+            //'create' => Pages\CreateFeePayment::route('/create'),
             //'edit' => Pages\EditFeePayment::route('/{record}/edit'),
         ];
     }

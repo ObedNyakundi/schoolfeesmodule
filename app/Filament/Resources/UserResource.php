@@ -53,6 +53,7 @@ class UserResource extends Resource
                 ->required()
                 ->password()
                 ->revealable()
+                ->hiddenOn('edit')
                 ->label('Password')
                 ->columnSpan(2)
                 ->placeholder('*********')
@@ -104,7 +105,7 @@ class UserResource extends Resource
     {
         return [
             'index' => Pages\ListUsers::route('/'),
-            'create' => Pages\CreateUser::route('/create'),
+           // 'create' => Pages\CreateUser::route('/create'),
             'edit' => Pages\EditUser::route('/{record}/edit'),
         ];
     }

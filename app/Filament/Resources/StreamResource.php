@@ -69,7 +69,7 @@ class StreamResource extends Resource
     {
         return [
             'index' => Pages\ListStreams::route('/'),
-            'create' => Pages\CreateStream::route('/create'),
+            //'create' => Pages\CreateStream::route('/create'),
             'edit' => Pages\EditStream::route('/{record}/edit'),
         ];
     }

@@ -68,7 +68,7 @@ class FeestypeResource extends Resource
     {
         return [
             'index' => Pages\ListFeestypes::route('/'),
-            'create' => Pages\CreateFeestype::route('/create'),
+            //'create' => Pages\CreateFeestype::route('/create'),
             'edit' => Pages\EditFeestype::route('/{record}/edit'),
         ];
     }
