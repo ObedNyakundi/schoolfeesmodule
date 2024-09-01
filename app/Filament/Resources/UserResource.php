@@ -36,7 +36,6 @@ class UserResource extends Resource
                 Forms\Components\TextInput::make('email')
                 ->required()
                 ->email()
-                ->unique(User::class, 'email')
                 ->label('Email Address')
                 ->columnSpan(2)
                 ->placeholder('e.g. example@website.com')

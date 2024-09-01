@@ -72,7 +72,6 @@ class StudentResource extends Resource
 
                 Forms\Components\TextInput::make('admission_number') 
                     ->required()
-                    ->unique()
                     ->maxLength(15)
                     //->uppercase()
                     ->placeholder('e.g. XY1234')
