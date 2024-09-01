@@ -168,8 +168,8 @@ class StudentResource extends Resource
                 Tables\Actions\DeleteAction::make(),
             ])
             ->headerActions([
-                ImportAction::make('import')
-                    ->importer(StudentImporter::class),
+                /*ImportAction::make('import')
+                    ->importer(StudentImporter::class),*/
                     
                 ExportAction::make('export')
                     ->exporter(StudentExporter::class),
