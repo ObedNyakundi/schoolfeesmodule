@@ -22,6 +22,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'role_id',
         'password',
     ];
 
@@ -64,5 +65,10 @@ class User extends Authenticatable
 
     public function schoolexpense(){
         return $this->hasMany(SchoolExpense::class);
+    }
+
+    public function role(): BelongsTo
+    {
+        return $this->belongsTo(Shield::roleModel(), 'role_id');
     }
 }

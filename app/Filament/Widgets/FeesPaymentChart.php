@@ -2,6 +2,7 @@
 
 namespace App\Filament\Widgets;
 
+use BezhanSalleh\FilamentShield\Traits\HasWidgetShield;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Filament\Widgets\ChartWidget;
@@ -9,6 +10,7 @@ use App\Models\FeePayment;
 
 class FeesPaymentChart extends ChartWidget
 {
+    use HasWidgetShield;
     protected static ?string $heading = 'Fee Collection For The Year';
     protected static ?int $sort = 4;
     protected static ?string $pollingInterval = '5s';

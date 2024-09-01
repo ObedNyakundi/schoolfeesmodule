@@ -2,6 +2,7 @@
 
 namespace App\Filament\Widgets;
 
+use BezhanSalleh\FilamentShield\Traits\HasWidgetShield;
 use Carbon\Carbon;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
@@ -9,6 +10,7 @@ use App\Models\Student;
 
 class StudentsOverview extends BaseWidget
 {
+    use HasWidgetShield;
     protected static ?int $sort = 1;
 
     protected function getStats(): array

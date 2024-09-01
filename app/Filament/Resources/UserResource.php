@@ -42,6 +42,14 @@ class UserResource extends Resource
                 ->placeholder('e.g. example@website.com')
                 ->maxLength(255),
 
+                Forms\Components\Select::make('role_id')
+                ->relationship('roles', 'name')
+                ->multiple()
+                ->preload()
+                ->label('User Role')
+                ->columnSpan(2)
+                ->searchable(),
+
                 Forms\Components\TextInput::make('password')
                 ->required()
                 ->password()
