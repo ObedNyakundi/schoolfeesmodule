@@ -74,6 +74,11 @@ class UserResource extends Resource
                     ->searchable()
                     ->sortable()
                     ->label('User Email Address'),
+
+                Tables\Columns\TextColumn::make('roles.name')
+                    ->searchable()
+                    ->sortable()
+                    ->label('Role'),
             ])
             ->filters([
                 //
