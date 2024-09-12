@@ -179,7 +179,7 @@ class FeePaymentResource extends Resource
             ->actions([
                 /*Tables\Actions\EditAction::make(),*/
                 Tables\Actions\Action::make('Print Receipt')
-                ->icon('heroicon-o-arrow-down-tray')
+                ->icon('heroicon-o-printer')
                 ->color('success')
                 ->url(function (FeePayment $payment) {
                     return route('feepayment.invoice.download', $payment->id);
