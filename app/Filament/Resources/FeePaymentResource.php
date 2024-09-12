@@ -178,6 +178,9 @@ class FeePaymentResource extends Resource
             ])
             ->actions([
                 /*Tables\Actions\EditAction::make(),*/
+                Tables\Actions\Action::make('Print Receipt')
+                ->icon('heroicon-o-printer')
+                ->color('success'),
             ])
 
             ->headerActions([
