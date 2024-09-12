@@ -257,7 +257,7 @@
                     @if($invoice->hasItemUnits)
                         <th scope="col" class="text-center border-0">{{ __('invoices::invoice.units') }}</th>
                     @endif
-                    <th scope="col" class="text-center border-0">{{ __('invoices::invoice.quantity') }}</th>
+                    <th scope="col" class="text-center border-0"></th>
                     <th scope="col" class="text-right border-0">{{ __('invoices::invoice.price') }}</th>
                     @if($invoice->hasItemDiscount)
                         <th scope="col" class="text-right border-0">{{ __('invoices::invoice.discount') }}</th>
@@ -282,7 +282,7 @@
                     @if($invoice->hasItemUnits)
                         <td class="text-center">{{ $item->units }}</td>
                     @endif
-                    <td class="text-center">{{ $item->quantity }}</td>
+                    <td class="text-center"></td>
                     <td class="text-right">
                         {{ $invoice->formatCurrency($item->price_per_unit) }}
                     </td>
@@ -360,16 +360,16 @@
 
         @if($invoice->notes)
             <p>
-                {{ __('invoices::invoice.notes') }}: {!! $invoice->notes !!}
+               <strong> {{ __('invoices::invoice.notes') }}:</strong>
+                <br> {!! $invoice->notes !!}
             </p>
         @endif
 
         <p>
-            {{ __('invoices::invoice.amount_in_words') }}: {{ $invoice->getTotalAmountInWords() }}
+            {{ __('invoices::invoice.amount_in_words') }}: <strong> <i>
+                {{ $invoice->getTotalAmountInWords() }} </i> </strong>
         </p>
-        <p>
-            {{ __('invoices::invoice.pay_until') }}: {{ $invoice->getPayUntilDate() }}
-        </p>
+        
 
         <script type="text/php">
             if (isset($pdf) && $PAGE_COUNT > 1) {

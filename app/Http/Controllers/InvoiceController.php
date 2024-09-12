@@ -4,11 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\FeePayment;
 use Illuminate\Http\Request;
-/*
-use LaravelDaily\Invoices\Invoice;
-use LaravelDaily\Invoices\Classes\Buyer;
-use LaravelDaily\Invoices\Classes\InvoiceItem;
-*/
+
 use LaravelDaily\Invoices\Invoice;
 use LaravelDaily\Invoices\Classes\Party;
 use LaravelDaily\Invoices\Classes\InvoiceItem;
@@ -21,70 +17,50 @@ class InvoiceController extends Controller
     $payment = FeePayment::findorfail($payment);
 
     $client = new Party([
-        'name'          => 'Roosevelt Lloyd',
-        'phone'         => '(520) 318-9486',
+        'name'          => config('app.name'),
+        'phone'         => '(254) 706-748162',
         'custom_fields' => [
-            'note'        => 'IDDQD',
-            'business id' => '365#GG',
+            'You were served by'  => $payment->users->name.'.',
         ],
     ]);
 
         $customer = new Party([
-            'name'          => 'Ashley Medina',
-            'address'       => 'The Green Street 12',
-            'code'          => '#22663214',
+            'name'          => $payment->student->name,
             'custom_fields' => [
-                'order number' => '> 654321 <',
+                'Student Class' => $payment->student->stream->name,
             ],
         ]);
 
         $items = [
-            InvoiceItem::make('Service 1')
-                ->description('Your product or service description')
-                ->pricePerUnit(47.79)
-                ->quantity(2)
-                ->discount(10),
-            InvoiceItem::make('Service 2')->pricePerUnit(71.96)->quantity(2),
-            InvoiceItem::make('Service 3')->pricePerUnit(4.56),
-            InvoiceItem::make('Service 4')->pricePerUnit(87.51)->quantity(7)->discount(4)->units('kg'),
-            InvoiceItem::make('Service 5')->pricePerUnit(71.09)->quantity(7)->discountByPercent(9),
-            InvoiceItem::make('Service 6')->pricePerUnit(76.32)->quantity(9),
-            InvoiceItem::make('Service 7')->pricePerUnit(58.18)->quantity(3)->discount(3),
-            InvoiceItem::make('Service 8')->pricePerUnit(42.99)->quantity(4)->discountByPercent(3),
-            InvoiceItem::make('Service 9')->pricePerUnit(33.24)->quantity(6)->units('m2'),
-            InvoiceItem::make('Service 11')->pricePerUnit(97.45)->quantity(2),
-            InvoiceItem::make('Service 12')->pricePerUnit(92.82),
-            InvoiceItem::make('Service 13')->pricePerUnit(12.98),
-            InvoiceItem::make('Service 14')->pricePerUnit(160)->units('hours'),
-            InvoiceItem::make('Service 15')->pricePerUnit(62.21)->discountByPercent(5),
-            InvoiceItem::make('Service 16')->pricePerUnit(2.80),
-            InvoiceItem::make('Service 17')->pricePerUnit(56.21),
-            InvoiceItem::make('Service 18')->pricePerUnit(66.81)->discountByPercent(8),
-            InvoiceItem::make('Service 19')->pricePerUnit(76.37),
-            InvoiceItem::make('Service 20')->pricePerUnit(55.80),
+            InvoiceItem::make('Fee Payment')
+                ->description('Paid as '.$payment->feestypes->name)
+                ->pricePerUnit($payment->amount)
+                ->quantity(1),
+           
         ];
 
         $notes = [
-            'your multiline',
-            'additional notes',
-            'in regards of delivery or something else',
+            'This is a system-generated receipt.',
+            'It is produced without any alterations.',
+            'Any inquiries should be directed to our office.',
+            'This System was developed and is maintained by the:'.config('app.name').' Team',
         ];
         $notes = implode("<br>", $notes);
 
         $invoice = Invoice::make('receipt')
-            ->series('BIG')
+            ->series('SMS')
             // ability to include translated invoice status
             // in case it was paid
             ->status(__('invoices::invoice.paid'))
-            ->sequence(667)
+            ->sequence($payment->id)
             ->serialNumberFormat('{SEQUENCE}/{SERIES}')
             ->seller($client)
             ->buyer($customer)
-            ->date(now()->subWeeks(3))
+            ->date($payment->created_at)
             ->dateFormat('m/d/Y')
             ->payUntilDays(14)
-            ->currencySymbol('KES ')
-            ->currencyCode('KES')
+            ->currencySymbol('KSh. ')
+            ->currencyCode('Kenyan Shillings')
             ->currencyFormat('{SYMBOL}{VALUE}')
             ->currencyThousandsSeparator('.')
             ->currencyDecimalPoint(',')
