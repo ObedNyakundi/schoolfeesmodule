@@ -37,7 +37,7 @@ class Student extends Model
         return $this->hasMany(Receipt::class);   
     }
     
-    public function student(){
-     return $this->hasOne(Student::class);   
+    public function studentaccount(){
+     return $this->hasOne(StudentAccount::class);   
     }
 }
