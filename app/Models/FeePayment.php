@@ -40,4 +40,8 @@ class FeePayment extends Model
     public function users(){
         return $this->belongsTo(User::class, 'added_by', 'id');
     }
+
+    public function receipt(){
+        return $this->hasOne(Receipt::class);
+    }
 }

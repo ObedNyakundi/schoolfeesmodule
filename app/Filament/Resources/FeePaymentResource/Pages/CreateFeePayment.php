@@ -7,6 +7,7 @@ use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
 use App\Models\StudentAccount;
 use App\Models\FeePayment;
+use App\Models\Receipt;
 use App\Models\SchoolAccount;
 
 
@@ -26,7 +27,7 @@ class CreateFeePayment extends CreateRecord
         
     }
 
-    // chain a transaction to create an equivalent student account
+    // chain a transaction to update the student and school accounts
     protected function handleRecordCreation(array $data): FeePayment
     {
          //normal insert
@@ -37,9 +38,19 @@ class CreateFeePayment extends CreateRecord
 
        //Fetch student account for credit update
        $studentAccount = StudentAccount::where('student_id', '=', $record->student_id)->get()->first();
+       $std_balance=$studentAccount->balance; //student balance before update
        $studentAccount->balance=$studentAccount->balance+$credit; //update balance
        $studentAccount->credit=$studentAccount->credit+$credit; //update credit
        $studentAccount->save();
+
+       //Create a receipt ledger record
+       $receipt = new Receipt();
+       $receipt->feepayment_id = $record->id;
+       $receipt->student_id = $record->student_id;
+       $receipt->existing_balance=$std_balance;
+       $receipt->amount_paid=$credit;
+       $receipt->new_balance=$std_balance+$credit;
+       $receipt->save();
 
        //Fetch school account for Income update
        $schoolAccount=SchoolAccount::latest()->first();
