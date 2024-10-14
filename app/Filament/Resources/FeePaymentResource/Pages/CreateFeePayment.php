@@ -1,7 +1,6 @@
 <?php
 namespace App\Filament\Resources\FeePaymentResource\Pages;
 
-use Illuminate\Support\Facades\Auth;
 use App\Filament\Resources\FeePaymentResource;
 use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
@@ -63,7 +62,7 @@ class CreateFeePayment extends CreateRecord
 
     protected function getCreatedNotificationTitle(): ?string
     {
-        return 'Fee Added Successfuly';
+        return 'Fee Payment Added Successfuly';
     }
 
     public function getTitle() : string
