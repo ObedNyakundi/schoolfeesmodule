@@ -1,5 +1,5 @@
 <?php
-//Use this file to add unified communication channels
+//Use this helper file to add unified communication channels
 
 //send emails with our helper function
 function sendEmail($emailReceiver, $emailMessage, $emailSubject, $link=null){
@@ -21,9 +21,3 @@ function extract_firstname($data)
 
 
 
-
-
-
-
-
-?>
