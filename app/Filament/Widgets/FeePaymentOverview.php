@@ -10,6 +10,8 @@ use App\Models\Student;
 use App\Models\FeePayment;
 use App\Models\StudentAccount;
 
+use App\Filament\Resources\FeePaymentResource;
+
 class FeePaymentOverview extends BaseWidget
 {
     use HasWidgetShield;
@@ -25,6 +27,7 @@ class FeePaymentOverview extends BaseWidget
             -> descriptionIcon('heroicon-o-arrow-right')
             ->icon('heroicon-o-banknotes')
             ->color('success')
+            ->url(FeePaymentResource::getUrl('index'))
             ->chart([
                 '4','5','3','7','9','6','8'
             ]),
@@ -36,6 +39,7 @@ class FeePaymentOverview extends BaseWidget
             -> description('Fee Collected this month')
             -> descriptionIcon('heroicon-o-arrow-right')
             ->icon('heroicon-o-banknotes')
+            ->url(FeePaymentResource::getUrl('index'))
             ->color('success'),
 
             //Fee Balances
@@ -44,6 +48,7 @@ class FeePaymentOverview extends BaseWidget
             -> description('Fees Account Balance')
             -> descriptionIcon('heroicon-o-arrow-right')
             ->icon('heroicon-o-banknotes')
+            ->url(FeePaymentResource::getUrl('index'))
             ->color('warning')
             ->chart([
                 '4','5','3','7','9','6','8'
