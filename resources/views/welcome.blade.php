@@ -71,7 +71,6 @@
             </div>
             <div class="col-6 text-right">
                 <button onclick="window.location.href='{{ route('filament.admin.auth.login') }}'" class="btn btn-primary">Login</button>
-                <button onclick="window.location.href='{{ route('filament.admin.auth.register') }}'" class="btn btn-secondary">Sign Up</button>
             </div>
         </div>
     </header>
@@ -81,7 +80,7 @@
             <div class="col-md-10">
                 <h1>Effortlessly Track and Manage School Fees</h1>
                 <p>Streamline fee tracking and payment processes with our comprehensive School Management System.</p>
-                <button onclick="window.location.href='{{ route('filament.admin.auth.register') }}'" class="btn btn-light">Get Started</button>
+                <button onclick="window.location.href='{{ route('guest.request') }}'" class="btn btn-light">Get Started</button>
             </div>
         </div>
     </section>
