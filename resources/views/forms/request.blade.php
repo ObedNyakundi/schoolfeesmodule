@@ -4,7 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Form samples</title>
-
+        <link
+            rel="shortcut icon"
+            href="{{ asset('images/logo.png') }}"
+            type="image/x-icon"
+        />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <!-- W3 Css -->
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -69,7 +73,7 @@
                     font-weight: 600;
                 }
             body{
-                background: url({{ asset('/images/pattern.png') }}), #fffffff !important;
+                background: url({{ public_path('images/pattern.png') }}), #fffffff !important;
             }
 
             
@@ -94,7 +98,7 @@
        
             <div class = "container">
             
-            <form id="contact-form" method="post" role="form">
+            <form id="contact-form" method="post" action="{{ route('request.store') }}" role="form">
                 @csrf
                 @method('post')
             <div class="controls">
@@ -111,17 +115,31 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="form_lastname">My Phone Number is: </label>
-                            <input id="form_lastname" type="text" name="surname" class="form-control" placeholder="e.g. 0701222333 " required="required" data-error="Phone Number is required.">
+                            <label for="phone">My Phone Number is: </label>
+                            <input id="phone" type="text"
+                            onkeyup="stripnum('phone',10)" 
+                             name="phone" class="form-control" placeholder="e.g. 0701222333 " required="required" data-error="Phone Number is required.">
                                                             </div>
                     </div>
                 </div>
+
                 <div class="row">
-                    
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="form_email">And my email is:</label>
+                            <input id="form_email" type="email" 
+                            name="email" class="form-control" 
+                            placeholder="e.g. amaina@example.com " required="required" data-error="Your Email is required.">
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="form_need">I am looking for *</label>
-                            <select id="form_need" name="need" class="form-control" required="required" data-error="Please specify your need.">
+                            <select id="form_need" name="purpose" class="form-control" required="required" data-error="Please specify your need.">
                                 <option value="" selected disabled>--Select an option--</option>
                                 <option value="Student placement">A student placement</option>
                                 <option value="A Suggestion">A suggestion</option>
@@ -172,8 +190,32 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
-        
-    </script>
+    /* Custom JS Scripts*/
+
+    function stripnum(e,len)
+    {
+      //checks the length of the input
+      var text0=document.getElementById(e).value;
+      var text1=document.getElementById(e);
+      if (text0.length<len+1) 
+      {
+        var Textf=document.getElementById(e);
+        var repl= /[^0-9]/gi;
+        Textf.value=Textf.value.replace(repl,"");
+
+        /*if (!(/^\d+$/.test(Textf.value))) 
+        {
+          alert("Please enter numeric values only.");
+        }*/
+      }
+      else
+      {
+        text1.value = text0.substr(0,len);
+        alert("Oops! Your input is too long. Please check it again.");
+        //slice();
+      }
+    };
+  </script>
 </footer>
 </body>
 </html>
