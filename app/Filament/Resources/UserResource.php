@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use Illuminate\Support\Facades\Auth;
 use App\Filament\Resources\UserResource\Pages;
 use App\Filament\Resources\UserResource\RelationManagers;
 use App\Models\User;
@@ -21,6 +22,26 @@ class UserResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-building-office-2';
     protected static ?string $label = 'Users';
     protected static ?int $navigationSort = 3;
+
+    protected function handleRecordCreation(array $data): User
+    {
+        $record =  static::getModel()::create($data);
+
+        $creator= Auth::user()->name;
+
+        //send an email
+        $emailSubject= "Welcome on board ".extract_firstname($record->name).".";
+        $emailMessage="Greetings ".extract_firstname($record->name).", you have been added as an administrator to our website with the following details:
+            Username: ".$record->email."
+            Password: ".$record->password."
+
+            This action was done by: ".$creator.". Contact him through: ".Auth::user()->email."
+        .";
+        $receiver = $record->email;
+        sendEmail($receiver,$emailMessage,$emailSubject);
+
+        return $record;
+    }
 
     public static function form(Form $form): Form
     {
