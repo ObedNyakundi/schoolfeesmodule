@@ -11,16 +11,27 @@ SFMS was a simple project I did when I was learning to use Laravel's Filament pa
 Watch the System **[illustration video](https://www.youtube.com/watch?v=LAHG9zAEwDM)** here: [https://www.youtube.com/watch?v=LAHG9zAEwDM](https://www.youtube.com/watch?v=LAHG9zAEwDM)
 
 # How to install
- - Ensure you install a DBMS, preferably XAMPP/WAMPP (or a relevant php host). SQLite works as well.
- - Open a terminal (Linux) / CMD (windows). use `Ctrl` + `Alt` +`T`.
- - clone this repo: `git clone https://github.com/ObedNyakundi/schoolfeesmodule`
- - when cloning is done, `cd` into the project folder and run `composer install`.
- - create a `.env` file from file `env.example`.
- - create a new application key: `php artisan key:generate`
- - run xampp/wampp
- - make migrations: `php artisan migrate`
- - run server `php artisan serve`
+- Download the project files into a folder.
+- Open terminal in the project folder. In some Linux distros, you might need to grant permissions to the project. Do so with:
+ ` sudo chmod -R 755 ./`
+- Install project dependencies using:
+ `composer install`
+- Install Node dependencies with:
+ `npm install`
+- Update the `.env` file.
+- Generate the application key:
+ `php artisan key:generate`
+- Run the database server (optional for those using sqlite)
+- Run laravel server 
+ `php artisan serve`
+- Make database migrations.
+ `php artisan migrate`
+- Seed the DB with the original values
+ `php artisan db:seed`
+- Run the jobs in the queue (optional)
+ `php artisan queue:work`
 
+ 
 ### Enjoy the software.
 
 # Gallery
