@@ -7,6 +7,9 @@ SFMS was a simple project I did when I was learning to use Laravel's Filament pa
 - School Administration.
 - Role assignments using shield.
 
+## YouTube Link:
+Watch the System **[illustration video](https://www.youtube.com/watch?v=LAHG9zAEwDM)** here: [https://www.youtube.com/watch?v=LAHG9zAEwDM](https://www.youtube.com/watch?v=LAHG9zAEwDM)
+
 # How to install
  - Ensure you install a DBMS, preferably XAMPP/WAMPP (or a relevant php host). SQLite works as well.
  - Open a terminal (Linux) / CMD (windows). use `Ctrl` + `Alt` +`T`.
