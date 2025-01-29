@@ -22,6 +22,16 @@ class RequestResource extends Resource
     protected static ?string $label = 'Requests';
     protected static ?int $navigationSort = 1;
 
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::get()->count();
+    }
+
+    public static function getNavigationBadgeColor(): ?string
+    {
+        return 'primary';
+    }
+    
      public static function canCreate(): bool
    {
       return false;
