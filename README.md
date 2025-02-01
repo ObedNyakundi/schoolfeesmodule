@@ -1,5 +1,7 @@
-# SFMS (School Fees Management System)
-SFMS was a simple project I did when I was learning to use Laravel's Filament package. I focused on the finance aspect of a school setup, defined the relevant objects, linked their relationships and eventually utilized the features of filament to actualize the project.
+# SMS (School Management System)
+Would you like to have a better system for managing school records free of charge? If you do, then our interests are aligned. And I believe we can achieve it.
+
+This was the first project I did when learning Filament, a package of Laravel. However, after spending time learning, going through the available school management systems, I believe we can have better systems for our schools. And this is my contriution to making our education systems better.
 
 ## Modules
 - Fees Management.
